@@ -1,4 +1,4 @@
 export class Config {
-	static creatureBaseDamage = 10;
-	static creatureBaseSpeed = 10;
+	static creatureBaseDamage:number = 10;
+	static creatureBaseSpeed:number = 100;
 }

@@ -31,14 +31,16 @@ export class Creature {
 	go() {
 		if (this.moveInterval) {this.stop();}
 		let self = this;
+		alert(this.speed);
 		this.moveInterval = setInterval(function () {
 			self.move();
+			
 		}, this.speed);
 	};
+	
 	move() {
 		if (!this.target) {this.findTarget()}
 		if (this.onTarget()) {this.stop();this.startAttack();return;}	
-		
 		// move towards the target
 		if (this.left<this.target.offsetLeft) {
 			this.left++;
@@ -49,7 +51,9 @@ export class Creature {
 			this.top++;
 		} else if (this.top != this.target.offsetTop) {
 			this.top--;
-		}				
+		}		
+		
+		// TODO: based on the target and the creatue coordinates create a property of direction for sprites orientation		
 	};
 	startAttack() {
 		if (this.attackInterval) {this.stopAttack();}
@@ -69,13 +73,16 @@ export class Creature {
 	};
 	attack() {
 		if (!this.target) {this.stopAttack();return;}		
+		
 		// Basic attack
 		let damage = Config.creatureBaseDamage;
-		let targetHealth = 100 - parseInt(this.target.style.opacity);
+		let targetHealth = 100 - parseInt(this.target.style.opacity) || 0;
+		console.log('attack', targetHealth);
 		targetHealth -= damage;
+		this.target.style.opacity = String(100 - targetHealth);
 		if (targetHealth <= 0) {
 			this.killTarget();
-			this.stopAttack();
+			this.stopAttack(); 
 		} 
 		
 		// TODO: Animate attack		
@@ -95,6 +102,10 @@ export class Creature {
 	}
 	findTarget() {		
 		this.target = <HTMLElement> document.querySelector('.element');
-		console.log(this.target);		
+		if (!this.target) {
+			// TODO: destroy condition
+			alert('Web is destroyed');
+			this.stop();
+		}		
 	}
 }

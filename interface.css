@@ -1,0 +1,74 @@
+@import 'app/app.component.css';
+@import 'app/portal.component.css';
+@import 'app/weapon.component.css';
+@import 'app/creature.component.css';
+
+.creature {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 100%;  /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Support for IE. */
+	font-feature-settings: 'liga';
+	width:1em;
+	height:1em;
+	font-size:16px;	
+	
+	border:0px;
+}
+
+.creature[health="50"] {
+	opacity: 0.5;
+}
+
+.creature:after {
+	content:'';
+	display:inline-block;
+	position:absolute;
+	width:25%;
+	height:25%;
+	top:50%;
+	left:50%;
+	background:url(http://rumblex-angularattack.s3.amazonaws.com/images/logo2.png) no-repeat;
+	background-size: 100%;
+	
+}
+
+
+.weapons {
+	position:inherit;
+	bottom:0;
+	left:0;
+	right:0;
+	padding:inherit;
+	border:inherit;
+}
+
+.page {
+	position: relative;
+	border: inherit;
+	padding: inherit;
+	min-height: inherit;
+}
+
+portal {
+	position:fixed;
+	bottom: 25%;
+	left:50%;
+}
