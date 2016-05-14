@@ -1,0 +1,9 @@
+<button (click)="open()">
+	Portal
+</button>
+
+<template [ngIf]="creatures.length">
+	<div *ngFor="let creep of creatures">
+		<creature [creature]="creep"></creature>
+	</div>	
+</template>

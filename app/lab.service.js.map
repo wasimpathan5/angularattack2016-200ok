@@ -1,0 +1,1 @@
+{"version":3,"file":"lab.service.js","sourceRoot":"","sources":["lab.service.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,gCAAgC;AAChC,uBAA2B,eAAe,CAAC,CAAA;AAC3C,2BAAyB,YAAY,CAAC,CAAA;AAEtC;IACC,cAAc,CAAC,EAAU;QACxB,IAAI,QAAQ,GAAG,IAAI,mBAAQ,CAAC,EAAE,EAAE,MAAM,CAAC,CAAC;QACxC,MAAM,CAAC,QAAQ,CAAC;IACjB,CAAC;AACF,CAAC;AAND;IAAC,iBAAU,EAAE;;OAAA;AACA,WAAG,MAKf,CAAA"}
