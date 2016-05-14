@@ -7,20 +7,28 @@ class Creature {
         this.top = 0;
         this.left = 0;
         this.targetLocation = "translate(" + 0 + "px, " + 0 + "px)";
+        this.direction = 1;
     }
     loose() {
         this.active = true;
         let self = this;
-        // setInterval(function() {
-        // 	self.left++;
-        // },500);
-        setTimeout(function () {
+        setInterval(function () {
             self.findNextTarget();
-        }, 1000);
+        }, 500);
     }
     findNextTarget() {
         let target = document.querySelector('.weapon');
-        this.targetLocation = "translate(" + target.offsetLeft + "px, " + target.offsetTop + "px)";
+        if (target) {
+            this.targetLocation = "translate(" + target.offsetLeft + "px, " + target.offsetTop + "px)";
+        }
+    }
+    onReach() {
+        // Hook for the transition end event
+        this.direction = this.direction === 1 ? -1 : 1;
+        this.destroyTarget();
+    }
+    destroyTarget() {
+        // Move the creature slightly back and again attack
     }
 }
 exports.Creature = Creature;
