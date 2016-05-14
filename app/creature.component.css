@@ -6,4 +6,5 @@
 	position: absolute;
 	top: 20px;
 	left: 20px;
+	transition: 10s ease-in-out;
 }
