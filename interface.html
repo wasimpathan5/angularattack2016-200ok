@@ -14,20 +14,62 @@
 		<header class="mdl-layout__header">
 			<div class="weapons mdl-layout__header-row">
 				<weapon><button class="weapon mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="weapon-1">Build</button></weapon>
+				<weapon><button class="weapon mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="weapon-1" disabled>Wait</button></weapon>
 			</div>
 		</header>
 		 <main class="mdl-layout__content">
 			<div class="page page-content" >
 			
-				<portal><button class="portal mdl-button mdl-js-button mdl-button--fab mdl-button--colored">Portal</button></portal>
-			
-				<!-- creatures -->
-			
-				<creature><div class="creature" style="top: 50px; left: 50px;">bug_report</div></creature>
-				<creature><div class="creature" style="top: 50px; left: 75px;" health="50">bug_report</div></creature>
-			
-			
+				<portal><span class="emotion mdl-tooltip is-active">I'm happy</span><button class="portal mdl-button mdl-js-button mdl-button--fab mdl-button--colored"><i class="material-icons">warning</i></button></portal>
+				
+				<!-- elements -->
+				<div class="element mdl-card mdl-shadow--2dp" level="1">
+					<div class="mdl-card__title">
+    					<h2 class="mdl-card__title-text">Element</h2>
+  					</div>
+					<div class="mdl-card__supporting-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Mauris sagittis pellentesque lacus eleifend lacinia...
+					</div>
+				</div>
+				<div class="element mdl-card mdl-shadow--2dp" level="2">
+					<div class="mdl-card__title">
+    					<h2 class="mdl-card__title-text">Element</h2>
+  					</div>
+					<div class="mdl-card__supporting-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Mauris sagittis pellentesque lacus eleifend lacinia...
+					</div>
+				</div>
 
+			
+				<!-- creatures -->		
+				<div style="margin-top: 250px;position:relative;clear:both"><!-- this div is just for demo perposes-->	
+					<creature><div class="creature noselect" style="top: 50px; left: 50px;">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 75px;" health="90">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 100px;" health="80">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 125px;" health="70">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 150px;" health="60">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 175px;" health="50">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 200px;" health="40">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 225px;" health="30">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 250px;" health="20">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 50px; left: 275px;" health="10">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 100px; left: 50px" level="1">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 100px; left: 100px" level="2">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 100px; left: 150px"  level="3">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 100px; left: 200px"  level="4">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 100px; left: 250px"  level="5">bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 150px; left: 50px" direction="nw" >bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 150px; left: 75px" direction="w" >bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 150px; left: 100px" direction="sw" >bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 150px; left: 120px" direction="s" >bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 150px; left: 150px" direction="se" >bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 150px; left: 175px" direction="e" >bug_report</div></creature>
+					<creature><div class="creature noselect" style="top: 150px; left: 200px" direction="ne" >bug_report</div></creature>
+				</div>
+				
+				
 			
 			</div>
 		</main>

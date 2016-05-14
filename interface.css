@@ -3,7 +3,11 @@
 @import 'app/weapon.component.css';
 @import 'app/creature.component.css';
 
+creature {
+	font-size:24px;
+}
 .creature {
+	z-index: 1000;
 	font-family: 'Material Icons';
 	font-weight: normal;
 	font-style: normal;
@@ -27,26 +31,133 @@
 	/* Support for IE. */
 	font-feature-settings: 'liga';
 	width:1em;
-	height:1em;
-	font-size:16px;	
+	height:1em;		
 	
-	border:0px;
+	border:0px;	
+	cursor:pointer;
+	
+	text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 0;
+	text-shadow: -1px -1px rgba(255, 255, 255, 0.5), 1px 1px rgba(255, 255, 255, 1);
 }
 
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* Internet Explorer/Edge */
+	user-select: none; 
+}
+
+
+.creature[health="100"] {
+	opacity: 1;
+}
+
+.creature[health="90"] {
+	opacity: 0.9;
+}
+.creature[health="80"] {
+	opacity: 0.8;
+}
+.creature[health="70"] {
+	opacity: 0.7;
+}
+.creature[health="60"] {
+	opacity: 0.6;
+}
 .creature[health="50"] {
 	opacity: 0.5;
+}
+.creature[health="40"] {
+	opacity: 0.4;
+}
+.creature[health="30"] {
+	opacity: 0.3;
+}
+.creature[health="20"] {
+	opacity: 0.2;
+}
+.creature[health="10"] {
+	opacity: 0.1;
+}
+
+
+/* Levels */
+.creature[level="1"] {
+	font-size:1em;
+}
+.creature[level="2"] {
+	font-size:1.25em;
+}
+.creature[level="3"] {
+	font-size:1.5em;
+}
+.creature[level="4"] {
+	font-size:1.75em;
+}
+.creature[level="5"] {
+	font-size:2em;
 }
 
 .creature:after {
 	content:'';
 	display:inline-block;
 	position:absolute;
-	width:25%;
-	height:25%;
+	width:50%;
+	height:50%;
 	top:50%;
 	left:50%;
+	margin-top:-25%;
+	margin-left:-25%;
 	background:url(http://rumblex-angularattack.s3.amazonaws.com/images/logo2.png) no-repeat;
-	background-size: 100%;
+	background-size: 100%;	
+}
+
+.creature[direction="nw"] {
+	transform: rotate(-45deg);	
+}
+.creature[direction="w"] {
+	transform: rotate(-90deg);	
+}
+.creature[direction="sw"] {
+	transform: rotate(-135deg);	
+}
+.creature[direction="s"] {
+	transform: rotate(180deg);	
+}
+.creature[direction="se"] {
+	transform: rotate(135deg);	
+}
+.creature[direction="e"] {
+	transform: rotate(90deg);	
+}
+.creature[direction="ne"] {
+	transform: rotate(45deg);	
+}
+
+
+
+.element {
+	float:left;
+	margin:2em 0 0 2em;
+}
+
+.element[level="2"] {
+	min-width:500px;
+}
+
+.emotion, .emotion.mdl-tooltip, .emotion.mdl-tooltip.is-active {
+	position:absolute!important;
+	left:50%!important;
+	top:0!important;
+	margin-top:-40px;
+	margin-left:-50%;
+	z-index:4000;
+	animation:none;
+	-webkit-animation: none;
+	transform:none;
+	-webkit-transform: none;
 	
 }
 
@@ -68,7 +179,8 @@
 }
 
 portal {
-	position:fixed;
+	position:fixed;	
+	z-index: 2000; 
 	bottom: 25%;
 	left:50%;
 }
