@@ -8,24 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Evil lab to produce creatures
 const core_1 = require('@angular/core');
-const creature_1 = require('./creature');
 const weapon_1 = require('./weapon');
-let Lab = class Lab {
-    createCreature(id) {
-        let creature = new creature_1.Creature(id, 'Test');
-        return creature;
-    }
-    // Should this be moved to a separate service?
-    createWeapon(id) {
-        let weapon = new weapon_1.Weapon(id, 'Dare to kill me!');
-        return weapon;
-    }
+let WeaponComponent = class WeaponComponent {
 };
-Lab = __decorate([
-    core_1.Injectable(), 
+__decorate([
+    core_1.Input(), 
+    __metadata('design:type', weapon_1.Weapon)
+], WeaponComponent.prototype, "weapon", void 0);
+WeaponComponent = __decorate([
+    core_1.Component({
+        selector: 'weapon',
+        templateUrl: 'app/weapon.component.html',
+        styleUrls: ['app/weapon.component.css']
+    }), 
     __metadata('design:paramtypes', [])
-], Lab);
-exports.Lab = Lab;
-//# sourceMappingURL=lab.service.js.map
+], WeaponComponent);
+exports.WeaponComponent = WeaponComponent;
+//# sourceMappingURL=weapon.component.js.map

@@ -12,10 +12,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require('@angular/core');
 const lab_service_1 = require('./lab.service');
 const creature_component_1 = require('./creature.component');
+const weapon_component_1 = require('./weapon.component');
 let PortalComponent = class PortalComponent {
     constructor(lab) {
         this.lab = lab;
         this.creatures = [];
+        this.weapons = [];
     }
     open() {
         let newCreature = this.lab.createCreature(this.creatures.length);
@@ -23,13 +25,18 @@ let PortalComponent = class PortalComponent {
         newCreature.loose();
         //alert('open');
     }
+    createWeapon() {
+        let newWeapon = this.lab.createWeapon(this.weapons.length);
+        this.weapons.push(newWeapon);
+        //newWeapon.attack();
+    }
 };
 PortalComponent = __decorate([
     core_1.Component({
         selector: 'portal',
         templateUrl: 'app/portal.component.html',
         providers: [lab_service_1.Lab],
-        directives: [creature_component_1.CreatureComponent]
+        directives: [creature_component_1.CreatureComponent, weapon_component_1.WeaponComponent]
     }), 
     __metadata('design:paramtypes', [lab_service_1.Lab])
 ], PortalComponent);
