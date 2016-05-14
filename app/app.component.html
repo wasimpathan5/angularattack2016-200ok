@@ -1,0 +1,7 @@
+<div class="page">
+	<portal></portal>	
+	
+	<div class="weapons" *ngIf="weapons.length">
+		<weapon *ngFor="let weapon of weapons" [weapon]="weapon"></weapon>
+	</div>
+</div>

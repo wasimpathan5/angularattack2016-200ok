@@ -3,29 +3,23 @@ import { Component } from '@angular/core';
 import { Creature } from './creature';
 import { Lab } from './lab.service';
 import { CreatureComponent} from './creature.component';
-import { WeaponComponent} from './weapon.component';
-import { Weapon } from './weapon';
 
 @Component({
 	selector: 'portal',
 	templateUrl: 'app/portal.component.html',
+	styleUrls: ['app/portal.component.css'],
 	providers: [Lab],
-	directives: [CreatureComponent, WeaponComponent]
+	directives: [CreatureComponent]
 })
 
 export class PortalComponent {
 	constructor(private lab: Lab) {}
-	creatures: Creature[] = [];
-	weapons: Weapon[] = [];
+	creatures: Creature[] = [];	
 	open() {
 		let newCreature = this.lab.createCreature(this.creatures.length);
 		this.creatures.push(newCreature);
 		newCreature.loose();
 		//alert('open');
 	}
-	createWeapon() {
-		let newWeapon = this.lab.createWeapon(this.weapons.length);
-		this.weapons.push(newWeapon);
-		//newWeapon.attack();
-	}
+	
 }

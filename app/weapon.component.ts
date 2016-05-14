@@ -1,3 +1,4 @@
+// Tool for uses to defend against creatures
 import { Component, Input } from '@angular/core';
 import { Weapon } from './weapon';
 

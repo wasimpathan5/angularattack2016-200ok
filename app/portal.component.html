@@ -1,10 +1,7 @@
-<button (click)="open()">
+<button class="portal" (click)="open()">
 	Portal
 </button>
 
-<button (click)="createWeapon()">
-	Defence
-</button>
 
 <template [ngIf]="creatures.length">
 	<div *ngFor="let creep of creatures">
@@ -12,8 +9,3 @@
 	</div>	
 </template>
 
-<template [ngIf]="weapons.length">
-	<div *ngFor="let weapon of weapons">
-		<weapon [weapon]="weapon"></weapon>
-	</div>	
-</template>

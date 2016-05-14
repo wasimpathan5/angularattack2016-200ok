@@ -1,0 +1,15 @@
+.page {
+	position: relative;
+	border: 1px dotted black;
+	padding: 20px;
+	min-height: 500px;
+}
+
+.weapons {
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	padding:20px;
+	border:1px dotted black;
+}

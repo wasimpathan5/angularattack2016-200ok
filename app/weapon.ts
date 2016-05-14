@@ -1,24 +1,18 @@
+// Tool for a user to defend against the creeps
 export class Weapon {
 	id: number;
 	text: string;
-	health: number;
-	top: number;
-	left: number;
 	constructor(id:number, text:string) {
 		this.id = id;
 		this.text = text;
-		this.health = 100;
-		this.top = getRandomOffset();
-		this.left = getRandomOffset();
+	};
+	action() {
+		// action of the weapon by defauly build an dom element
+		// The product of the action would be an isolated dom element inside the page a creature could interact with
+		let container = document.querySelector('.page');
+		let element = document.createElement('div');
+		element.setAttribute('class', 'element');
+		element.innerHTML = 'My new element';
+		container.appendChild(element);	
 	}
-	attack() {
-		// Implmentation goes here
-		alert('attack');
-	}	
-}
-
-function getRandomOffset() {
-	let max = 800;
-	let min = 200;
-	return Math.floor(Math.random() * (max - min)) + min;
 }
