@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Creature } from './creature';
 import { Lab } from './lab.service';
 import { CreatureComponent} from './creature.component';
+import {Config} from './config';
 
 @Component({
 	selector: 'portal',
@@ -14,12 +15,24 @@ import { CreatureComponent} from './creature.component';
 
 export class PortalComponent {
 	constructor(private lab: Lab) {}
-	creatures: Creature[] = [];	
+	creatures: Creature[] = [];
+	private createInterval:any;	
 	open() {
-		let newCreature = this.lab.createCreature(this.creatures.length);
-		this.creatures.push(newCreature);
-		newCreature.loose();
-		//alert('open');
+		let self = this;
+		if (this.createInterval) {
+			clearInterval(this.createInterval);
+			this.createInterval = null;	
+		}
+		this.createInterval = setInterval(function () {
+			let targets = document.querySelectorAll('.element');
+			if (targets.length > 0) {
+				let newCreature = self.lab.createCreature(self.creatures.length);
+				self.creatures.push(newCreature);
+				newCreature.loose();
+				//alert('open');
+			}
+
+		}, Config.creatureCreationDelay);
 	}
 	
 }

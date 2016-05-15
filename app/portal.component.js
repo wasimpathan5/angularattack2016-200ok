@@ -12,16 +12,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require('@angular/core');
 const lab_service_1 = require('./lab.service');
 const creature_component_1 = require('./creature.component');
+const config_1 = require('./config');
 let PortalComponent = class PortalComponent {
     constructor(lab) {
         this.lab = lab;
         this.creatures = [];
     }
     open() {
-        let newCreature = this.lab.createCreature(this.creatures.length);
-        this.creatures.push(newCreature);
-        newCreature.loose();
-        //alert('open');
+        let self = this;
+        if (this.createInterval) {
+            clearInterval(this.createInterval);
+            this.createInterval = null;
+        }
+        this.createInterval = setInterval(function () {
+            let targets = document.querySelectorAll('.element');
+            if (targets.length > 0) {
+                let newCreature = self.lab.createCreature(self.creatures.length);
+                self.creatures.push(newCreature);
+                newCreature.loose();
+            }
+        }, config_1.Config.creatureCreationDelay);
     }
 };
 PortalComponent = __decorate([
