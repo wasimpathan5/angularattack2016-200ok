@@ -1,6 +1,8 @@
-<button class="portal" (click)="open()">
-	Portal
-</button>
+<div class="portal-button-container">
+	<button class="portal mdl-button mdl-js-button mdl-button--fab mdl-button--colored" (click)="open()">
+		<i class="material-icons">warning</i>
+	</button>
+</div>
 
 
 <template [ngIf]="creatures.length">

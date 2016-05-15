@@ -1,0 +1,25 @@
+/* Common styles */
+.page {
+}
+
+
+/* Elements should be declared here */
+.element {
+	float:left;
+	margin:2em 0 0 2em;
+}
+
+.element[level="2"] {
+	min-width:500px;
+}
+
+.page {
+	position: relative;
+	border: inherit;
+	padding: inherit;
+	min-height: inherit;
+}
+
+creature {
+	font-size:24px;
+}

@@ -9,7 +9,9 @@ class Creature {
         this.top = 0;
         this.left = 0;
         this.direction = 1;
+        this.health = 100;
         this.speed = config_1.Config.creatureBaseSpeed;
+        this.family = 'bug_report'; // Should match material design icon codes
     }
     ;
     stop() {
@@ -24,7 +26,6 @@ class Creature {
             this.stop();
         }
         let self = this;
-        alert(this.speed);
         this.moveInterval = setInterval(function () {
             self.move();
         }, this.speed);
@@ -34,12 +35,16 @@ class Creature {
         if (!this.target) {
             this.findTarget();
         }
+        if (!this.target) {
+            return;
+        } // no more targets
         if (this.onTarget()) {
             this.stop();
             this.startAttack();
             return;
         }
         // move towards the target
+        // TODO: add animation and increase the step
         if (this.left < this.target.offsetLeft) {
             this.left++;
         }
@@ -107,6 +112,11 @@ class Creature {
     }
     ;
     loose() {
+        // Detect portal position
+        let portalEl = document.querySelector('.portal-button-container'); // portal is fixed
+        let pageEl = document.querySelector('.page'); // page is over relative element	
+        this.top = portalEl.offsetTop - pageEl.offsetTop;
+        this.left = portalEl.offsetLeft - pageEl.offsetLeft;
         this.active = true;
         this.go();
     }

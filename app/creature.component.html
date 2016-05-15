@@ -1,3 +1,1 @@
-<div class="creature" [ngStyle]="{top: creature.top, left: creature.left}">
-	{{creature.id}}
-</div>
+<div class="creature noselect" [ngStyle]="{top: creature.top, left: creature.left}" [attr.active]="creature.active" [attr.health]="creature.health" [attr.level]="creature.level">{{creature.family}}</div>

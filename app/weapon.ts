@@ -11,8 +11,12 @@ export class Weapon {
 		// The product of the action would be an isolated dom element inside the page a creature could interact with
 		let container = document.querySelector('.page');
 		let element = document.createElement('div');
-		element.setAttribute('class', 'element');
-		element.innerHTML = 'My new element';
+		element.setAttribute('class', 'element mdl-card mdl-shadow--2dp');
+		// TODO: add random content 
+		element.innerHTML = '<div class="mdl-card__title">\
+								<h2 class="mdl-card__title-text">Element</h2></div>\
+								<div class="mdl-card__supporting-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...</div>\
+							</div>';
 		container.appendChild(element);	
 	}
 }

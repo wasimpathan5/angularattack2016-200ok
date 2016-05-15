@@ -1,3 +1,6 @@
-.portal {
-	
+.portal-button-container { /* applies to the portal container */	
+	position:absolute;	
+	z-index: 500; /* under creatures */ 
+	top:50vh;
+	left:50vw;	
 }
