@@ -6,7 +6,7 @@ Click on the bugs to squash them! And once the bugs are squashed, destroy their 
 
 ## Demo Page
 
-Visit our demo page at http://200ok.2016.angularattack.io/. Try it for yourself and have some fun!! Stop the bugs from destroying the interwebs!!!1! 
+Visit our demo page at <a href="http://200ok.2016.angularattack.io/">http://200ok.2016.angularattack.io/</a>. Try it for yourself and have some fun!! Stop the bugs from destroying the interwebs!!!1! 
 
 ## Motivation
 
