@@ -124,11 +124,16 @@ export class Creature {
 		this.go();
 	}
 	findTarget() {		
-		this.target = <HTMLElement> document.querySelector('.element');
+		let targets = document.querySelectorAll('.element');
+		let i = this.getRandomTarget(0, targets.length - 1);
+		this.target = <HTMLElement> targets[i];
 		if (!this.target) {
 			// TODO: destroy condition
 			alert('Web is destroyed');
 			this.stop();
 		}		
+	};
+	getRandomTarget(min: number, max: number) {
+		return Math.floor(Math.random() * (max - min)) + min;
 	}
 }

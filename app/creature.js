@@ -135,12 +135,18 @@ class Creature {
         this.go();
     }
     findTarget() {
-        this.target = document.querySelector('.element');
+        let targets = document.querySelectorAll('.element');
+        let i = this.getRandomTarget(0, targets.length - 1);
+        this.target = targets[i];
         if (!this.target) {
             // TODO: destroy condition
             alert('Web is destroyed');
             this.stop();
         }
+    }
+    ;
+    getRandomTarget(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 }
 exports.Creature = Creature;
