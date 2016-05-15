@@ -19,7 +19,7 @@ let AppComponent = class AppComponent {
         this.weapons = [new weapon_1.Weapon(1, 'Build')];
     }
     ngAfterViewInit() {
-        setTimeout(() => this._demoComponent.start(), 1000);
+        setTimeout(() => this._demoComponent.start(), 2000);
     }
     ngOnInit() {
         this.start();

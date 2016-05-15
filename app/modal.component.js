@@ -11,6 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require('@angular/core');
 const modal_1 = require('./modal');
 let ModalComponent = class ModalComponent {
+    ngOnInit() {
+        this.modal.positionModal();
+    }
 };
 __decorate([
     core_1.Input(), 

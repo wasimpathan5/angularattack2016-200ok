@@ -19,7 +19,7 @@ export class AppComponent implements AfterViewInit {
 	private _demoComponent:DemoComponent;
 	
 	ngAfterViewInit() {
-		setTimeout(() => this._demoComponent.start(), 1000);
+		setTimeout(() => this._demoComponent.start(), 2000);
 	}
 	
 	ngOnInit() {

@@ -9,4 +9,8 @@ import { Modal } from './modal';
 export class ModalComponent {
 	@Input()
 	modal: Modal
+	
+	ngOnInit() {
+		this.modal.positionModal();
+	}
 }

@@ -27,18 +27,19 @@ export class Modal {
 		this.confirmFunc = confirmAction;
 		this.cancelFunc = cancelAction;
 		this.targetElement = !targetElement ? 'body' : targetElement;
-		this.positionModal();
 	};
 	
-	private positionModal() {
+	positionModal() {
 		var t = <HTMLElement>document.querySelector(this.targetElement);
 		let dialog = <HTMLElement>document.querySelector(this.selector).querySelector('dialog');
 		dialog.style.zIndex = '501';
 		dialog.style.position = 'absolute';
-		dialog.style.top = (t.offsetHeight / 2).toString();
 		if (this.targetElement != 'body') {
-			dialog.style.left = (t.offsetWidth / 2).toString();
+			dialog.style.top = (t.offsetHeight / 2).toString();
+			dialog.style.left = (t.offsetLeft + t.offsetWidth / 2 - dialog.clientWidth / 2).toString();
 			dialog.style.margin = '0px';
+		} else {
+			dialog.style.top = (t.offsetHeight / 3).toString();		
 		}
 	}
 	
