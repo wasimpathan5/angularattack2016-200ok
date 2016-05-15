@@ -49,6 +49,10 @@ class Creature {
         if (!this.target) {
             this.findTarget();
         }
+        if (this.target.getAttribute("destroyed") === "true") {
+            this.target = null;
+            this.findTarget();
+        }
         if (!this.target) {
             return;
         } // no more targets
@@ -142,6 +146,11 @@ class Creature {
         this.target = targets[i];
         if (!this.target) {
             // TODO: destroy condition
+            // Cleanup the destroyed elements so that new elements can take their place
+            let garbageTargets = document.querySelectorAll('.element');
+            for (var j = 0; j < garbageTargets.length; j++) {
+                garbageTargets[j].parentNode.removeChild(garbageTargets[j]);
+            }
             alert('Web is destroyed');
             this.stop();
         }

@@ -55,6 +55,10 @@ export class Creature {
 	
 	move() {
 		if (!this.target) {this.findTarget()}
+		if (this.target.getAttribute("destroyed") === "true") {
+			this.target = null;
+			this.findTarget();
+		}
 		if (!this.target) {return;} // no more targets
 		if (this.onTarget()) {this.stop();this.startAttack();return;}	
 		// move towards the target
@@ -131,6 +135,11 @@ export class Creature {
 		this.target = <HTMLElement> targets[i];
 		if (!this.target) {
 			// TODO: destroy condition
+			// Cleanup the destroyed elements so that new elements can take their place
+			let garbageTargets = document.querySelectorAll('.element');
+			for (var item of garbageTargets) {
+				item.parentNode.removeChild(item);
+			}
 			alert('Web is destroyed');
 			this.stop();
 		}		
