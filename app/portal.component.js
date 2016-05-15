@@ -25,8 +25,13 @@ let PortalComponent = class PortalComponent {
         let self = this;
         event_service_1.EventService.state.subscribe(function (state) {
             // Do logic here based on the changed game state
+            self.gameState = state;
             if (state == 'start') {
                 self.start();
+            }
+            else if (state == 'loose') {
+                self.stop();
+                self.win();
             }
         });
     }
@@ -59,6 +64,12 @@ let PortalComponent = class PortalComponent {
             this.createInterval = null;
         }
     }
+    win() {
+        // evils wins
+        for (let i in this.creatures) {
+            this.creatures[i].win();
+        }
+    }
     open() {
         let targets = document.querySelectorAll('.element:not([destroyed])');
         if (targets.length > 0) {
@@ -67,6 +78,9 @@ let PortalComponent = class PortalComponent {
             newCreature.loose();
         }
         else {
+            if (this.gameState != 'loose') {
+                void event_service_1.EventService.state.next('loose');
+            }
         }
     }
 };

@@ -7,7 +7,13 @@ class Utils {
     }
     // Display emotion
     static showEmotion(selector, value) {
-        var container = document.querySelector(selector);
+        let container;
+        if (typeof selector == 'object') {
+            container = selector;
+        }
+        else {
+            container = document.querySelector(selector);
+        }
         if (container) {
             var emotionEl = document.createElement('span');
             emotionEl.setAttribute('class', 'emotion');

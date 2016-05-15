@@ -19,18 +19,21 @@ export class PortalComponent {
 	constructor(private lab: Lab) { }
 	creatures: Creature[] = [];
 	private createInterval: any;
+	gameState:any;
 	health:number;
 	percentHealth:number;
 	ngOnInit() {
 		this.health = Config.portalHealth;
 		let self = this;		
-		EventService.state.subscribe(function(state) {
+		EventService.state.subscribe(function(state:any) {
 			// Do logic here based on the changed game state
-			
+			self.gameState = state;
 			if (state == 'start') {
 				self.start();	
-			} 
-			
+			} else if (state == 'loose') {				 
+				 self.stop();
+				 self.win();
+			}			
 		});
 	}
 	start() {
@@ -61,10 +64,14 @@ export class PortalComponent {
 			clearInterval(this.createInterval);
 			this.createInterval = null;
 		}
-	
 		
 	}
-
+	win() {
+		// evils wins
+		for(let i in this.creatures) {
+			this.creatures[i].win();			
+		}
+	}
 	open() {
 		let targets = document.querySelectorAll('.element:not([destroyed])');
 		if (targets.length > 0) {
@@ -72,8 +79,9 @@ export class PortalComponent {
 			this.creatures.push(newCreature);
 			newCreature.loose();
 		} else {
-			// TODO: web is destroyed
+			if (this.gameState != 'loose') {
+				void EventService.state.next('loose');
+			}			
 		}
 	}
-
 }

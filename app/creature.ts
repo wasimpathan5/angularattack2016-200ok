@@ -1,11 +1,14 @@
 // Evil creature to destroy the web
 import {Config} from './config';
+import {EventService} from './event.service';
+import {Utils} from './utils'
 
 export class Creature {
 	id: number;
 	name: string;
 	active: boolean;
 	health:number;
+	percentHealth: number;
 	left: number;
 	top: number;
 	target: HTMLElement;
@@ -14,6 +17,7 @@ export class Creature {
 	speed:number;
 	family:string;
 	level: number;
+	attackSpeed:number;
 	private moveInterval:any;	
 	private attackInterval:any;
 	constructor(id:number, name:string) {
@@ -23,16 +27,18 @@ export class Creature {
 		this.top = 0;
 		this.left = 0;
 		this.direction = "";
-		this.health = 100;
-		this.speed = Config.creatureBaseSpeed;
-		this.family = 'bug_report'; // Should match material design icon codes
 		this.level = 1;
+		this.health = Config.creatureHealth * this.level;
+		this.speed = Config.creatureMoveSpeed;
+		this.attackSpeed = Config.creatureAttackSpeed;
+		this.family = 'bug_report'; // Should match material design icon codes		
 	};
 	clickHandler() {
-		if (this.health <= 10) {
+		if (this.health <= 0) {
 			this.destroy();
 		}
-		this.health -= 10;
+		this.health -= Config.creatureClickDamage;
+		this.percentHealth = Utils.normalize(this.health,10,Config.creatureHealth); 
 	};
 	destroy() {
 		this.stop();
@@ -55,7 +61,8 @@ export class Creature {
 		}, this.speed);
 	};
 	die() {
-		// 
+		this.active = false;
+		
 	}
 	move() {
 		if (!this.target) {this.findTarget()}
@@ -122,7 +129,7 @@ export class Creature {
 		let self = this;
 		this.attackInterval = setInterval(function() {
 			self.attack();
-		},this.speed);
+		},this.attackSpeed);
 	};
 	stopAttack() {
 		if (this.attackInterval) {
@@ -138,14 +145,17 @@ export class Creature {
 		
 		// Basic attack
 		let damage = Config.creatureBaseDamage;
-		let targetHealth = 100 - parseInt(this.target.style.opacity) || 0;
-		console.log('attack', targetHealth);
+		let targetHealth = parseInt(this.target.getAttribute('health')) || Config.elementHealth;		
 		targetHealth -= damage;
-		this.target.style.opacity = String(100 - targetHealth);
+		//this.target.style.opacity = String(100 - targetHealth);
 		if (targetHealth <= 0) {
 			this.killTarget();
 			this.stopAttack(); 
 		} 
+		
+		this.target.setAttribute('health', String(targetHealth));
+		this.target.setAttribute('percentHealth', String(Utils.normalize(targetHealth,10,Config.elementHealth)));
+		Utils.showEmotion(this.target,'-'+ String(damage));
 		
 		// TODO: Animate attack		
 	}
@@ -175,6 +185,10 @@ export class Creature {
 		this.active = true;
 		this.go();
 	}
+	win() {
+		this.stop();
+		this.active = false;
+	}
 	findTarget() {		
 		let targets = document.querySelectorAll('.element:not([destroyed])');
 		let i = this.getRandomTarget(0, targets.length - 1);
@@ -186,7 +200,9 @@ export class Creature {
 			for (var j = 0; j < garbageTargets.length; j++) {
 				garbageTargets[j].parentNode.removeChild(garbageTargets[j]);
 			}
-			alert('Web is destroyed');
+			if (this.active) {
+				void EventService.state.next('loose');
+			}
 			this.stop();
 		}		
 	};

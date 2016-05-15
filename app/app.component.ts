@@ -33,6 +33,11 @@ export class AppComponent {
 	start() {
 		// Start the game
 		void EventService.state.next('start');
+		
+		// Build 10 random elements
+		for(let i = 0; i<10; i++) { 
+			this.weapons[0].action();
+		}
 	}
 	end() {
 		// End the game

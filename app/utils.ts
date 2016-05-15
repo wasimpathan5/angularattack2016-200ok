@@ -7,8 +7,13 @@ export class Utils {
 	} 
 	
 	// Display emotion
-	static showEmotion(selector:string, value:string) {
-		var container = document.querySelector(selector);
+	static showEmotion(selector:any, value:string) {
+		let container:any;
+		if (typeof selector == 'object') {
+			container = selector;	
+		} else {
+			container = document.querySelector(selector);
+		}
 		if (container) {
 			var emotionEl = document.createElement('span');
 			emotionEl.setAttribute('class', 'emotion');
