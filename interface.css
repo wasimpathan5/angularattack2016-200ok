@@ -19,3 +19,7 @@
 	-webkit-transform: none;
 	
 }
+
+.creature {
+	display:inline-block;
+}
