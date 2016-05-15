@@ -9,24 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
-const portal_component_1 = require('./portal.component');
-const modal_component_1 = require('./modal.component');
-const weapon_component_1 = require('./weapon.component');
-const weapon_1 = require('./weapon');
-let AppComponent = class AppComponent {
-    constructor() {
-        this.test = [1, 2, 3];
-        this.weapons = [new weapon_1.Weapon(1, 'Build'), new weapon_1.Weapon(2, 'Freeze')];
+let DemoComponent = class DemoComponent {
+    start($) {
     }
 };
-AppComponent = __decorate([
+DemoComponent = __decorate([
     core_1.Component({
-        selector: 'app',
-        templateUrl: 'app/app.component.html',
-        styleUrls: ['app/app.component.css'],
-        directives: [portal_component_1.PortalComponent, weapon_component_1.WeaponComponent, modal_component_1.ModalComponent]
+        selector: 'demo',
+        template: '<div id="demo"></div>'
     }), 
     __metadata('design:paramtypes', [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], DemoComponent);
+exports.DemoComponent = DemoComponent;
+//# sourceMappingURL=demo.component.js.map
