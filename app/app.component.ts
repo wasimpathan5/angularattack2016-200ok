@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {PortalComponent} from './portal.component';
-import {ModalComponent} from './modal.component';
+import {DemoComponent} from './demo.component';
 import {WeaponComponent} from './weapon.component';
 import {Weapon} from './weapon';
 import {EventService} from './event.service';
@@ -9,7 +9,7 @@ import {EventService} from './event.service';
 	selector: 'app',
 	templateUrl: 'app/app.component.html',
 	styleUrls: ['app/app.component.css'],
-	directives: [PortalComponent, WeaponComponent, ModalComponent]
+	directives: [PortalComponent, WeaponComponent, DemoComponent]
 })
 
 export class AppComponent {
@@ -28,9 +28,8 @@ export class AppComponent {
 		setTimeout(function () {
 			self.start();
 		});
-		
-		
-  	}	
+	}
+	
 	start() {
 		// Start the game
 		void EventService.state.next('start');

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 const core_1 = require('@angular/core');
 const portal_component_1 = require('./portal.component');
-const modal_component_1 = require('./modal.component');
+const demo_component_1 = require('./demo.component');
 const weapon_component_1 = require('./weapon.component');
 const weapon_1 = require('./weapon');
 const event_service_1 = require('./event.service');
@@ -44,7 +44,7 @@ AppComponent = __decorate([
         selector: 'app',
         templateUrl: 'app/app.component.html',
         styleUrls: ['app/app.component.css'],
-        directives: [portal_component_1.PortalComponent, weapon_component_1.WeaponComponent, modal_component_1.ModalComponent]
+        directives: [portal_component_1.PortalComponent, weapon_component_1.WeaponComponent, demo_component_1.DemoComponent]
     }), 
     __metadata('design:paramtypes', [])
 ], AppComponent);

@@ -11,6 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require('@angular/core');
 const modal_1 = require('./modal');
 let ModalComponent = class ModalComponent {
+    ngOnInit() {
+        let parentEl = document.querySelector(this.modal.targetElement);
+        if (this.modal.targetElement == 'body') {
+        }
+        else {
+        }
+    }
 };
 __decorate([
     core_1.Input(), 
