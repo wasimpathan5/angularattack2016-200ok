@@ -13,6 +13,7 @@ export class Creature {
 	direction: string;
 	speed:number;
 	family:string;
+	level: number;
 	private moveInterval:any;	
 	private attackInterval:any;
 	constructor(id:number, name:string) {
@@ -25,6 +26,7 @@ export class Creature {
 		this.health = 100;
 		this.speed = Config.creatureBaseSpeed;
 		this.family = 'bug_report'; // Should match material design icon codes
+		this.level = 1;
 	};
 	clickHandler() {
 		if (this.health <= 10) {
@@ -147,6 +149,11 @@ export class Creature {
 	}
 	killTarget() {
 		if (!this.target) {return;}
+		// After each sucessful attack, creep should grow in size
+		this.level++;
+		if (this.level > 5) {
+			this.level = 5;
+		}
 		// this.target.parentNode.removeChild(this.target);
 		this.target.style.visibility = "hidden";
 		this.target.setAttribute("destroyed", "true");
