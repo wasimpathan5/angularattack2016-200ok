@@ -20,7 +20,9 @@ See the [Angular 2.0 Quickstart](https://angular.io/docs/ts/latest/quickstart.ht
 ## Contributors
 
 [Mikhail Vazhenin](https://github.com/MikeVaz)
+
 [Wasim Pathan](https://github.com/wasimpathan5)
+
 [Mike Young](https://github.com/orofbrown)
 
 ## License
