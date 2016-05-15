@@ -12,11 +12,7 @@ const core_1 = require('@angular/core');
 const modal_1 = require('./modal');
 let ModalComponent = class ModalComponent {
     ngOnInit() {
-        let parentEl = document.querySelector(this.modal.targetElement);
-        if (this.modal.targetElement == 'body') {
-        }
-        else {
-        }
+        this.modal.positionModal();
     }
 };
 __decorate([

@@ -14,5 +14,6 @@ Config.elementTitle = ['Title1', 'Title2'];
 Config.elementContents = ['Element1', 'Element2'];
 Config.elementHealth = 100;
 Config.creatureAttackSpeed = 500;
+Config.weaponRechargeTime = 5000;
 exports.Config = Config;
 //# sourceMappingURL=config.js.map

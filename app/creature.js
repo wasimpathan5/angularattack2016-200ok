@@ -52,6 +52,8 @@ class Creature {
     ;
     die() {
         this.active = false;
+        this.stop();
+        this.stopAttack();
     }
     move() {
         if (!this.target) {
@@ -160,6 +162,7 @@ class Creature {
         if (targetHealth <= 0) {
             this.killTarget();
             this.stopAttack();
+            return;
         }
         this.target.setAttribute('health', String(targetHealth));
         this.target.setAttribute('percentHealth', String(utils_1.Utils.normalize(targetHealth, 10, config_1.Config.elementHealth)));

@@ -1,6 +1,6 @@
-<div id="demo-container">
-	<modal [modal]="steps[0]"></modal>
-	<modal [modal]="steps[1]"></modal>
-	<modal [modal]="steps[2]"></modal>
-	<modal [modal]="steps[3]"></modal>
+<div id="demo-container" *ngIf="steps && steps.length">
+	<modal [modal]="steps[0]" id="step1"></modal>
+	<modal [modal]="steps[1]" id="step2"></modal>
+	<modal [modal]="steps[2]" id="step3"></modal>
+	<modal [modal]="steps[3]" id="step4"></modal>
 </div>

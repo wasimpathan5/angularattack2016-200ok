@@ -6,6 +6,7 @@ class Weapon {
     constructor(id, text) {
         this.id = id;
         this.text = text;
+        this.disabled = false;
     }
     ;
     action() {
@@ -20,6 +21,14 @@ class Weapon {
 								<div class="mdl-card__supporting-text">' + utils_1.Utils.pickItem(config_1.Config.elementContents) + '</div>\
 							</div>';
         container.appendChild(element);
+        this.recharge();
+    }
+    recharge() {
+        this.disabled = true;
+        let self = this;
+        setTimeout(function () {
+            self.disabled = false;
+        }, config_1.Config.weaponRechargeTime);
     }
 }
 exports.Weapon = Weapon;

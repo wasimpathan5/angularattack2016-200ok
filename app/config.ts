@@ -12,4 +12,5 @@ export class Config {
 	static elementContents:string[] = ['Element1', 'Element2'];
 	static elementHealth:number = 100; 
 	static creatureAttackSpeed = 500;
+	static weaponRechargeTime = 5000;
 }

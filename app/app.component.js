@@ -19,28 +19,21 @@ let AppComponent = class AppComponent {
         this.weapons = [new weapon_1.Weapon(1, 'Build')];
     }
     ngOnInit() {
-        this.start();
+        // Build 3 random elements
+        for (let i = 0; i < 3; i++) {
+            this.weapons[0].action();
+        }
         // Example how to use service		
         event_service_1.EventService.state.subscribe(function (state) {
             // Do logic here based on the changed game state
-            console.log(state);
+            if (state == 'start') {
+            }
         });
         // Yeld to other components before publishing new state
         let self = this;
         setTimeout(function () {
-            self.start();
+            event_service_1.EventService.state.next('demo');
         });
-    }
-    start() {
-        // Start the game
-        void event_service_1.EventService.state.next('start');
-        // Build 10 random elements
-        for (let i = 0; i < 10; i++) {
-            this.weapons[0].action();
-        }
-    }
-    end() {
-        // End the game
     }
 };
 AppComponent = __decorate([

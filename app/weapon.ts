@@ -5,9 +5,11 @@ import { Utils } from './utils';
 export class Weapon {
 	id: number;
 	text: string;
+	disabled:boolean
 	constructor(id:number, text:string) {
 		this.id = id;
 		this.text = text;
+		this.disabled= false;
 	};
 	action() {
 		// action of the weapon by defauly build an dom element
@@ -21,5 +23,15 @@ export class Weapon {
 								<div class="mdl-card__supporting-text">' + Utils.pickItem(Config.elementContents)+'</div>\
 							</div>';
 		container.appendChild(element);	
+		this.recharge();
+		
+	}
+	
+	recharge() {
+		this.disabled = true;
+		let self = this;
+		setTimeout(function() {
+			self.disabled = false;
+		},Config.weaponRechargeTime);
 	}
 }

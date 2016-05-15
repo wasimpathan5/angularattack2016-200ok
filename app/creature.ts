@@ -62,7 +62,8 @@ export class Creature {
 	};
 	die() {
 		this.active = false;
-		
+		this.stop();
+		this.stopAttack();		
 	}
 	move() {
 		if (!this.target) {this.findTarget()}
@@ -150,7 +151,8 @@ export class Creature {
 		//this.target.style.opacity = String(100 - targetHealth);
 		if (targetHealth <= 0) {
 			this.killTarget();
-			this.stopAttack(); 
+			this.stopAttack();
+			return; 
 		} 
 		
 		this.target.setAttribute('health', String(targetHealth));
