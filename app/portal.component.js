@@ -18,20 +18,27 @@ let PortalComponent = class PortalComponent {
         this.lab = lab;
         this.creatures = [];
     }
-    open() {
+    start() {
         let self = this;
+        this.createInterval = setInterval(function () {
+            self.open();
+        }, config_1.Config.creatureCreationDelay);
+    }
+    stop() {
         if (this.createInterval) {
             clearInterval(this.createInterval);
             this.createInterval = null;
         }
-        this.createInterval = setInterval(function () {
-            let targets = document.querySelectorAll('.element:not([destroyed])');
-            if (targets.length > 0) {
-                let newCreature = self.lab.createCreature(self.creatures.length);
-                self.creatures.push(newCreature);
-                newCreature.loose();
-            }
-        }, config_1.Config.creatureCreationDelay);
+    }
+    open() {
+        let targets = document.querySelectorAll('.element:not([destroyed])');
+        if (targets.length > 0) {
+            let newCreature = this.lab.createCreature(this.creatures.length);
+            this.creatures.push(newCreature);
+            newCreature.loose();
+        }
+        else {
+        }
     }
 };
 PortalComponent = __decorate([

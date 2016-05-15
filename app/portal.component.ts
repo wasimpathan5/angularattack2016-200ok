@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Creature } from './creature';
 import { Lab } from './lab.service';
 import { CreatureComponent} from './creature.component';
-import {Config} from './config';
+import { Config } from './config';
 
 @Component({
 	selector: 'portal',
@@ -14,25 +14,31 @@ import {Config} from './config';
 })
 
 export class PortalComponent {
-	constructor(private lab: Lab) {}
+	constructor(private lab: Lab) { }
 	creatures: Creature[] = [];
-	private createInterval:any;	
-	open() {
+	private createInterval: any;
+	start() {
 		let self = this;
-		if (this.createInterval) {
-			clearInterval(this.createInterval);
-			this.createInterval = null;	
-		}
 		this.createInterval = setInterval(function () {
-			let targets = document.querySelectorAll('.element:not([destroyed])');
-			if (targets.length > 0) {
-				let newCreature = self.lab.createCreature(self.creatures.length);
-				self.creatures.push(newCreature);
-				newCreature.loose();
-				//alert('open');
-			}
-
+			self.open();
 		}, Config.creatureCreationDelay);
 	}
-	
+	stop() {
+		if (this.createInterval) {
+			clearInterval(this.createInterval);
+			this.createInterval = null;
+		}
+	}
+
+	open() {
+		let targets = document.querySelectorAll('.element:not([destroyed])');
+		if (targets.length > 0) {
+			let newCreature = this.lab.createCreature(this.creatures.length);
+			this.creatures.push(newCreature);
+			newCreature.loose();
+		} else {
+			// TODO: web is destroyed
+		}
+	}
+
 }

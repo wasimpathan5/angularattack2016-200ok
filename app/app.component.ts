@@ -12,5 +12,16 @@ import {Weapon} from './weapon';
 
 export class AppComponent {
 	test: number[] = [1,2,3];
-	weapons: Weapon[] = [new Weapon(1,'Build'), new Weapon(2, 'Freeze')];	
+	weapons: Weapon[] = [new Weapon(1,'Build'), new Weapon(2, 'Freeze')];
+	ngOnInit() {
+    	this.start();
+  	}	
+	start () {
+		// Start the game
+		// TODO: start portal from here
+		alert('Start demo here'); 
+	}
+	end() {
+		// End the game
+	}
 }

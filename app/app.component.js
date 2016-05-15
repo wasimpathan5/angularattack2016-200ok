@@ -17,6 +17,17 @@ let AppComponent = class AppComponent {
         this.test = [1, 2, 3];
         this.weapons = [new weapon_1.Weapon(1, 'Build'), new weapon_1.Weapon(2, 'Freeze')];
     }
+    ngOnInit() {
+        this.start();
+    }
+    start() {
+        // Start the game
+        // TODO: start portal from here
+        alert('Start demo here');
+    }
+    end() {
+        // End the game
+    }
 };
 AppComponent = __decorate([
     core_1.Component({
