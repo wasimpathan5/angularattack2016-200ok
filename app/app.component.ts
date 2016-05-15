@@ -3,6 +3,7 @@ import {PortalComponent} from './portal.component';
 import {DemoComponent} from './demo.component';
 import {WeaponComponent} from './weapon.component';
 import {Weapon} from './weapon';
+import {EventService} from './event.service';
 
 @Component({
 	selector: 'app',
@@ -12,15 +13,26 @@ import {Weapon} from './weapon';
 })
 
 export class AppComponent {
-	test: number[] = [1,2,3];
 	weapons: Weapon[] = [new Weapon(1,'Build'), new Weapon(2, 'Freeze')];
 	ngOnInit() {
     	this.start();
-  	}	
-	start () {
+		
+		// Example how to use service		
+		EventService.state.subscribe(function(state) {
+			// Do logic here based on the changed game state
+			console.log(state);
+		});
+		
+		// Yeld to other components before publishing new state
+		let self = this;
+		setTimeout(function () {
+			self.start();
+		});
+	}
+	
+	start() {
 		// Start the game
-		// TODO: start portal from here
-		// alert('Start demo here');
+		void EventService.state.next('start');
 	}
 	end() {
 		// End the game

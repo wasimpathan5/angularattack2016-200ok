@@ -5,21 +5,6 @@
 @import 'app/creature.component.css';
 @import 'app/weapon.component.css';
 
-
-.emotion, .emotion.mdl-tooltip, .emotion.mdl-tooltip.is-active {
-	position:absolute!important;
-	left:50%!important;
-	top:0!important;
-	margin-top:-40px;
-	margin-left:-50%;
-	z-index:4000;
-	animation:none;
-	-webkit-animation: none;
-	transform:none;
-	-webkit-transform: none;
-	
-}
-
 .creature {
 	display:inline-block;
 }

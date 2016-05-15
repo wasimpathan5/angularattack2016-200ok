@@ -13,16 +13,45 @@ const core_1 = require('@angular/core');
 const lab_service_1 = require('./lab.service');
 const creature_component_1 = require('./creature.component');
 const config_1 = require('./config');
+const event_service_1 = require('./event.service');
+const utils_1 = require('./utils');
 let PortalComponent = class PortalComponent {
     constructor(lab) {
         this.lab = lab;
         this.creatures = [];
+    }
+    ngOnInit() {
+        this.health = config_1.Config.portalHealth;
+        let self = this;
+        event_service_1.EventService.state.subscribe(function (state) {
+            // Do logic here based on the changed game state
+            if (state == 'start') {
+                self.start();
+            }
+        });
     }
     start() {
         let self = this;
         this.createInterval = setInterval(function () {
             self.open();
         }, config_1.Config.creatureCreationDelay);
+    }
+    hit() {
+        this.health = this.health - config_1.Config.portalClickDamage;
+        this.percentHealth = utils_1.Utils.normalize(this.health, 10, config_1.Config.portalHealth);
+        console.log('hit', this.health, this.percentHealth);
+        utils_1.Utils.showEmotion('.portal-button-container', '-' + config_1.Config.portalClickDamage);
+        if (this.health <= 0) {
+            this.die();
+        }
+    }
+    die() {
+        this.stop();
+        void event_service_1.EventService.state.next('win');
+        for (let i in this.creatures) {
+            this.creatures[i].die();
+            delete this.creatures[i];
+        }
     }
     stop() {
         if (this.createInterval) {

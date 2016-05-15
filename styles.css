@@ -23,3 +23,33 @@
 creature {
 	font-size:24px;
 }
+
+.emotion  {
+	background: rgba(97,97,97,.9);
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    font-size: 10px;
+	position:absolute;
+	top:0;
+	left:50%;
+    font-weight: 500;
+    line-height: 14px;
+    max-width: 170px;
+    padding: 8px;
+    text-align: center;	
+	z-index:4000;
+	-moz-transition: all 2s ease-out!important;  /* FF4+ */
+    -o-transition: all 2s ease-out!important;  /* Opera 10.5+ */
+    -webkit-transition: all 2s ease-out!important;  /* Saf3.2+, Chrome */
+    -ms-transition: all 2s ease-out!important;  /* IE10 */
+    transition: all 2s ease-out!important;	
+	
+}
+
+.emotion.animate {
+	top:-50px;
+	opacity:0;
+}
+
+

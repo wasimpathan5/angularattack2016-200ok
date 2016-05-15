@@ -13,18 +13,26 @@ const portal_component_1 = require('./portal.component');
 const demo_component_1 = require('./demo.component');
 const weapon_component_1 = require('./weapon.component');
 const weapon_1 = require('./weapon');
+const event_service_1 = require('./event.service');
 let AppComponent = class AppComponent {
     constructor() {
-        this.test = [1, 2, 3];
         this.weapons = [new weapon_1.Weapon(1, 'Build'), new weapon_1.Weapon(2, 'Freeze')];
     }
     ngOnInit() {
         this.start();
+        // Example how to use service		
+        event_service_1.EventService.state.subscribe(function (state) {
+            // Do logic here based on the changed game state
+            console.log(state);
+        });
+        // Yeld to other components before publishing new state
+        let self = this;
+        setTimeout(function () {
+            self.start();
+        });
     }
     start() {
         // Start the game
-        // TODO: start portal from here
-        // alert('Start demo here');
     }
     end() {
         // End the game
