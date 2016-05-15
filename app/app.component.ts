@@ -23,13 +23,17 @@ export class AppComponent {
 			console.log(state);
 		});
 		
-		void EventService.state.next('test'); // Change state of the game (void is for TS reasons)
+		// Yeld to other components before publishing new state
+		let self = this;
+		setTimeout(function () {
+			self.start();
+		});
+		
 		
   	}	
 	start() {
 		// Start the game
-		// TODO: start portal from here
-		//alert('Start demo here'); 
+		void EventService.state.next('start');
 	}
 	end() {
 		// End the game

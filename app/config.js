@@ -6,5 +6,7 @@ Config.creatureBaseSpeed = 20;
 Config.creatureCreationDelay = 5000;
 Config.creatureEmotions = ['Test1', 'Test2', 'Test2'];
 Config.dialogContents = ['Text1', 'Test2'];
+Config.portalHealth = 1000;
+Config.portalClickDamage = 10;
 exports.Config = Config;
 //# sourceMappingURL=config.js.map

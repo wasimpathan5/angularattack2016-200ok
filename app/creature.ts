@@ -54,7 +54,9 @@ export class Creature {
 			
 		}, this.speed);
 	};
-	
+	die() {
+		// 
+	}
 	move() {
 		if (!this.target) {this.findTarget()}
 		if (this.target.getAttribute("destroyed") === "true") {

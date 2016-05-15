@@ -46,6 +46,9 @@ class Creature {
         }, this.speed);
     }
     ;
+    die() {
+        // 
+    }
     move() {
         if (!this.target) {
             this.findTarget();
