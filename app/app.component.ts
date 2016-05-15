@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, AfterViewInit, ViewChild} from '@angular/core';
 import {PortalComponent} from './portal.component';
 import {DemoComponent} from './demo.component';
 import {WeaponComponent} from './weapon.component';
@@ -12,8 +12,16 @@ import {EventService} from './event.service';
 	directives: [PortalComponent, WeaponComponent, DemoComponent]
 })
 
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 	weapons: Weapon[] = [new Weapon(1,'Build')];
+	
+	@ViewChild(DemoComponent)
+	private _demoComponent:DemoComponent;
+	
+	ngAfterViewInit() {
+		setTimeout(() => this._demoComponent.start(), 1000);
+	}
+	
 	ngOnInit() {
     	this.start();
 		

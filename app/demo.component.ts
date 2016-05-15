@@ -14,12 +14,11 @@ export class DemoComponent {
 	
 	ngOnInit() {
 		this.steps = [
-			new Modal('Welcome', 'Welcome to Angulator', 'Next >>', 'End Demo', this, this.next, this.end),
-			new Modal('Step 2', 'Second step in the demo', 'Next >>', 'End Demo', this, this.next, this.end),
-			new Modal('Step 3', 'Third step in the demo', 'Next >>', 'End Demo', this, this.next, this.end),
-			new Modal('Step 4', 'Fourth step in the demo', 'Next >>', 'End Demo', this, this.next, this.end),
+			new Modal('Welcome', 'Welcome to Angulator', 'Next >>', 'End Demo', this, '#step1', this.next, this.end),
+			new Modal('Step 2', 'Second step in the demo', 'Next >>', 'End Demo', this, '#step2', this.next, this.end),
+			new Modal('Step 3', 'Third step in the demo', 'Next >>', 'End Demo', this, '#step3', this.next, this.end, 'portal'),
+			new Modal('Step 4', 'Fourth step in the demo', 'Next >>', 'End Demo', this, '#step4', this.next, this.end),
 		];
-		this.start();
 	}
 	
 	start() {

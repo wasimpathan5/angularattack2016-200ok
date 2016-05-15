@@ -18,6 +18,9 @@ let AppComponent = class AppComponent {
     constructor() {
         this.weapons = [new weapon_1.Weapon(1, 'Build')];
     }
+    ngAfterViewInit() {
+        setTimeout(() => this._demoComponent.start(), 1000);
+    }
     ngOnInit() {
         this.start();
         // Example how to use service		
@@ -39,6 +42,10 @@ let AppComponent = class AppComponent {
         // End the game
     }
 };
+__decorate([
+    core_1.ViewChild(demo_component_1.DemoComponent), 
+    __metadata('design:type', demo_component_1.DemoComponent)
+], AppComponent.prototype, "_demoComponent", void 0);
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
