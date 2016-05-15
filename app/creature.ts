@@ -137,8 +137,8 @@ export class Creature {
 			// TODO: destroy condition
 			// Cleanup the destroyed elements so that new elements can take their place
 			let garbageTargets = document.querySelectorAll('.element');
-			for (var item of garbageTargets) {
-				item.parentNode.removeChild(item);
+			for (var j = 0; j < garbageTargets.length; j++) {
+				garbageTargets[j].parentNode.removeChild(garbageTargets[j]);
 			}
 			alert('Web is destroyed');
 			this.stop();
