@@ -1,10 +1,10 @@
 <dialog>
-	<h4 class="mdl-dialog__title">El Modal</h4>
+	<h4 class="mdl-dialog__title">{{modal.title}}</h4>
 	<div class="mdl-dialog__content">
-		<p>Some text to tell you something important</p>
+		<p>{{modal.message}}</p>
 	</div>
 	<div class="mdl-dialog__actions">
-		<button type="button" class="mdl-button close">Cancel</button>
-		<button type="button" class="mdl-button">OK</button>
+		<button type="button" class="mdl-button" (click)="modal.cancelAction()">{{modal.cancelText}}</button>
+		<button type="button" class="mdl-button" (click)="modal.confirmAction()">{{modal.confirmText}}</button>
 	</div>
 </dialog>

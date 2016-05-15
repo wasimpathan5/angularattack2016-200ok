@@ -9,4 +9,13 @@ import { Modal } from './modal';
 export class ModalComponent {
 	@Input()
 	modal: Modal
+	
+	ngOnInit() {
+		let parentEl = document.querySelector(this.modal.targetElement);
+		if (this.modal.targetElement == 'body') {
+			// position in center
+		} else {
+			// position based on target
+		}
+	}
 }

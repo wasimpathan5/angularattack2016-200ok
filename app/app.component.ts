@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {PortalComponent} from './portal.component';
-import {ModalComponent} from './modal.component';
+import {DemoComponent} from './demo.component';
 import {WeaponComponent} from './weapon.component';
 import {Weapon} from './weapon';
 
@@ -8,7 +8,7 @@ import {Weapon} from './weapon';
 	selector: 'app',
 	templateUrl: 'app/app.component.html',
 	styleUrls: ['app/app.component.css'],
-	directives: [PortalComponent, WeaponComponent, ModalComponent]
+	directives: [PortalComponent, WeaponComponent, DemoComponent]
 })
 
 export class AppComponent {
@@ -20,7 +20,7 @@ export class AppComponent {
 	start () {
 		// Start the game
 		// TODO: start portal from here
-		alert('Start demo here'); 
+		// alert('Start demo here');
 	}
 	end() {
 		// End the game

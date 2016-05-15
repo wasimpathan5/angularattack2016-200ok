@@ -9,14 +9,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
+const modal_component_1 = require('./modal.component');
+const modal_1 = require('./modal');
 let DemoComponent = class DemoComponent {
-    start($) {
+    constructor() {
+        this.currentStep = 0;
+    }
+    ngOnInit() {
+        this.steps = [
+            new modal_1.Modal('Welcome', 'Welcome to Angulator', 'Next >>', 'End Demo', this, this.next, this.end),
+            new modal_1.Modal('Step 2', 'Second step in the demo', 'Next >>', 'End Demo', this, this.next, this.end),
+            new modal_1.Modal('Step 3', 'Third step in the demo', 'Next >>', 'End Demo', this, this.next, this.end),
+            new modal_1.Modal('Step 4', 'Fourth step in the demo', 'Next >>', 'End Demo', this, this.next, this.end),
+        ];
+        this.start();
+    }
+    start() {
+        this.steps[this.currentStep].open();
+    }
+    next(self) {
+        self.steps[self.currentStep].close();
+        self.currentStep++;
+        if (self.currentStep < self.steps.length) {
+            self.steps[self.currentStep].open();
+        }
+        else {
+            self.end(self);
+        }
+    }
+    prev(self) {
+        self.steps[self.currentStep].close();
+        self.currentStep--;
+        self.steps[self.currentStep].open();
+    }
+    end(self) {
+        if (self.currentStep < self.steps.length) {
+            self.steps[self.currentStep].close();
+        }
+        self.currentStep = 0;
     }
 };
 DemoComponent = __decorate([
     core_1.Component({
         selector: 'demo',
-        template: '<div id="demo"></div>'
+        directives: [modal_component_1.ModalComponent],
+        templateUrl: 'app/demo.component.html'
     }), 
     __metadata('design:paramtypes', [])
 ], DemoComponent);
