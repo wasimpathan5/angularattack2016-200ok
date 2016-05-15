@@ -8,7 +8,7 @@ class Creature {
         this.active = false;
         this.top = 0;
         this.left = 0;
-        this.direction = 1;
+        this.direction = "";
         this.health = 100;
         this.speed = config_1.Config.creatureBaseSpeed;
         this.family = 'bug_report'; // Should match material design icon codes
@@ -56,6 +56,7 @@ class Creature {
         if (!this.target) {
             return;
         } // no more targets
+        this.targetLocation = this.getTargetLocation();
         if (this.onTarget()) {
             this.stop();
             this.startAttack();
@@ -63,19 +64,59 @@ class Creature {
         }
         // move towards the target
         // TODO: add animation and increase the step
-        if (this.left < this.target.offsetLeft) {
+        if (this.left < this.targetLocation.x) {
             this.left++;
         }
-        else if (this.left != this.target.offsetLeft) {
+        else if (this.left != this.targetLocation.x) {
             this.left--;
         }
-        if (this.top < this.target.offsetTop) {
+        if (this.top < this.targetLocation.y) {
             this.top++;
         }
-        else if (this.top != this.target.offsetTop) {
+        else if (this.top != this.targetLocation.y) {
             this.top--;
         }
         // TODO: based on the target and the creatue coordinates create a property of direction for sprites orientation		
+    }
+    ;
+    getTargetLocation() {
+        let obj = {
+            x: 0,
+            y: 0
+        };
+        // Note: width of the creature is negligible and hence not considered in calculations
+        if (this.target.offsetLeft < this.left) {
+            if (this.target.offsetTop < this.top) {
+                // This means the target resides in NW quadrant. so move to the SE corner (which is nearest) of the element
+                obj.x = this.target.offsetLeft + this.target.offsetWidth;
+                obj.y = this.target.offsetTop + this.target.offsetHeight;
+                this.direction = "nw";
+                return obj;
+            }
+            else {
+                // This means the target resides in SW quadrant. so move to the NE corner (which is nearest) of the element
+                obj.x = this.target.offsetLeft + this.target.offsetWidth;
+                obj.y = this.target.offsetTop;
+                this.direction = "sw";
+                return obj;
+            }
+        }
+        else {
+            if (this.target.offsetTop < this.top) {
+                // This means the target resides in NE quadrant. so move to the SW corner (which is nearest) of the element
+                obj.x = this.target.offsetLeft;
+                obj.y = this.target.offsetTop + this.target.offsetHeight;
+                this.direction = "ne";
+                return obj;
+            }
+            else {
+                // This means the target resides in SE quadrant. so move to the NW corner (which is nearest) of the element
+                obj.x = this.target.offsetLeft;
+                obj.y = this.target.offsetTop;
+                this.direction = "se";
+                return obj;
+            }
+        }
     }
     ;
     startAttack() {
@@ -125,10 +166,10 @@ class Creature {
         this.target = null;
     }
     onTarget() {
-        if (!this.target) {
+        if (!this.target || !this.targetLocation) {
             return false;
         }
-        return this.left == this.target.offsetLeft && this.top == this.target.offsetTop;
+        return (this.left == this.targetLocation.x) && (this.top == this.targetLocation.y);
     }
     ;
     loose() {
