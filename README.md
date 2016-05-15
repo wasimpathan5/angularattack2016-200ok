@@ -1,11 +1,11 @@
-## Angulator
+## Evil portal
 
-Angulator is a simple game created for the 2016 Angular Attack competition, written using the Angular 2.0 framework. It is written in Typescript and deployed using Surge.
+Evil portal is a simple game created for the 2016 Angular Attack competition, written using the Angular 2.0 framework. It is written in Typescript and deployed using Surge.
 The interwebs are being attack by Angular creatures! Anything that is not Angular will be eaten and destroyed! That is where you come in. You must use your mouse to protect your elements from the Angular bugs before they eat all the things!
 Click on the bugs to squash them! And once the bugs are squashed, destroy their base!! All their base are belong to you and you can rule the internet (or at least one webpage)!!!1!
 
 ## Demo Page
-
+Tested only in Chrome. Sorry! 
 Visit our demo page at <a href="http://200ok.2016.angularattack.io/" target="_blank">http://200ok.2016.angularattack.io/</a>. Try it for yourself and have some fun!! Stop the bugs from destroying the interwebs!!!1! 
 
 ## Motivation
@@ -28,3 +28,6 @@ See the [Angular 2.0 Quickstart](https://angular.io/docs/ts/latest/quickstart.ht
 ## License
 
 We ain't got no license. Use this game at your own risk.
+
+
+

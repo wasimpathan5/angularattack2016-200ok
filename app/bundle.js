@@ -26158,6 +26158,8 @@ System.registerDynamic("app/creature.js", ["./config", "./event.service", "./uti
     }
     die() {
       this.active = false;
+      this.stop();
+      this.stopAttack();
     }
     move() {
       if (!this.target) {
@@ -26247,6 +26249,7 @@ System.registerDynamic("app/creature.js", ["./config", "./event.service", "./uti
       if (targetHealth <= 0) {
         this.killTarget();
         this.stopAttack();
+        return;
       }
       this.target.setAttribute('health', String(targetHealth));
       this.target.setAttribute('percentHealth', String(utils_1.Utils.normalize(targetHealth, 10, config_1.Config.elementHealth)));
@@ -26470,8 +26473,7 @@ System.registerDynamic("app/modal.component.js", ["@angular/core", "./modal"], t
   const modal_1 = $__require('./modal');
   let ModalComponent = class ModalComponent {
     ngOnInit() {
-      let parentEl = document.querySelector(this.modal.targetElement);
-      if (this.modal.targetElement == 'body') {} else {}
+      this.modal.positionModal();
     }
   };
   __decorate([core_1.Input(), __metadata('design:type', modal_1.Modal)], ModalComponent.prototype, "modal", void 0);
@@ -26490,23 +26492,37 @@ System.registerDynamic("app/modal.js", [], true, function($__require, exports, m
       global = this,
       GLOBAL = this;
   class Modal {
-    constructor(title, message, confirmText, cancelText, context, confirmAction, cancelAction, targetElement) {
+    constructor(title, message, confirmText, cancelText, context, selector, confirmAction, cancelAction, targetElement) {
       this.title = title;
       this.message = message;
       this.confirmText = confirmText;
       this.cancelText = cancelText;
       this.modalContext = context;
+      this.selector = selector;
       this.confirmFunc = confirmAction;
       this.cancelFunc = cancelAction;
       this.targetElement = !targetElement ? 'body' : targetElement;
     }
+    positionModal() {
+      var t = document.querySelector(this.targetElement);
+      let dialog = document.querySelector(this.selector).querySelector('dialog');
+      dialog.style.zIndex = '600';
+      dialog.style.position = 'absolute';
+      if (this.targetElement != 'body') {
+        dialog.style.top = (t.offsetHeight / 2).toString();
+        dialog.style.left = (t.offsetLeft + t.offsetWidth / 2 - dialog.clientWidth / 2).toString();
+        dialog.style.margin = '0px';
+      } else {
+        dialog.style.top = (t.offsetHeight / 3).toString();
+      }
+    }
     open() {
-      let modal = document.querySelector('dialog');
-      modal.setAttribute('open', '');
+      let dialog = document.querySelector(this.selector).querySelector('dialog');
+      dialog.setAttribute('open', '');
     }
     close() {
-      let modal = document.querySelector('dialog');
-      modal.removeAttribute('open');
+      let dialog = document.querySelector(this.selector).querySelector('dialog');
+      dialog.removeAttribute('open');
     }
     confirmAction() {
       if (this.confirmFunc) {
@@ -26527,7 +26543,7 @@ System.registerDynamic("app/modal.js", [], true, function($__require, exports, m
   return module.exports;
 });
 
-System.registerDynamic("app/demo.component.js", ["@angular/core", "./modal.component", "./modal"], true, function($__require, exports, module) {
+System.registerDynamic("app/demo.component.js", ["@angular/core", "./modal.component", "./modal", "./event.service"], true, function($__require, exports, module) {
   "use strict";
   ;
   var define,
@@ -26552,13 +26568,23 @@ System.registerDynamic("app/demo.component.js", ["@angular/core", "./modal.compo
   const core_1 = $__require('@angular/core');
   const modal_component_1 = $__require('./modal.component');
   const modal_1 = $__require('./modal');
+  const event_service_1 = $__require('./event.service');
   let DemoComponent = class DemoComponent {
     constructor() {
       this.currentStep = 0;
     }
     ngOnInit() {
-      this.steps = [new modal_1.Modal('Welcome', 'Welcome to Angulator', 'Next >>', 'End Demo', this, this.next, this.end), new modal_1.Modal('Step 2', 'Second step in the demo', 'Next >>', 'End Demo', this, this.next, this.end), new modal_1.Modal('Step 3', 'Third step in the demo', 'Next >>', 'End Demo', this, this.next, this.end), new modal_1.Modal('Step 4', 'Fourth step in the demo', 'Next >>', 'End Demo', this, this.next, this.end)];
-      this.start();
+      let self = this;
+      self.steps = [new modal_1.Modal('Welcome', 'Welcome to the Angulator, where you must save the internet from being destroyed by bugs!', 'Next >>', 'End Demo', self, '#step1', self.next, self.end), new modal_1.Modal('Step 1', 'Click the build button to build a new component on the webpage!', 'Next >>', 'End Demo', self, '#step2', self.next, self.end, '#weapon-1'), new modal_1.Modal('Step 2', 'Watch out for the creatures the come out of the portal to attack our elements!!', 'Next >>', 'End Demo', self, '#step3', self.next, self.end, '.portal-button-container'), new modal_1.Modal('Step 3', 'Click the bugs to kill them and click their base to destroy it too!!!1!', 'Next >>', 'End Demo', self, '#step4', self.next, self.end)];
+      event_service_1.EventService.state.subscribe(function(state) {
+        if (state == 'demo') {
+          self.start();
+        } else if (state == 'loose') {
+          alert('Web is destroyed. Refresh to try again');
+        } else if (state == 'win') {
+          alert('Web is saved. Refresh to try again');
+        }
+      });
     }
     start() {
       this.steps[this.currentStep].open();
@@ -26582,6 +26608,7 @@ System.registerDynamic("app/demo.component.js", ["@angular/core", "./modal.compo
         self.steps[self.currentStep].close();
       }
       self.currentStep = 0;
+      event_service_1.EventService.state.next('start');
     }
   };
   DemoComponent = __decorate([core_1.Component({
@@ -35109,6 +35136,7 @@ System.registerDynamic("app/config.js", [], true, function($__require, exports, 
   Config.elementContents = ['Element1', 'Element2'];
   Config.elementHealth = 100;
   Config.creatureAttackSpeed = 500;
+  Config.weaponRechargeTime = 5000;
   exports.Config = Config;
   return module.exports;
 });
@@ -35169,6 +35197,7 @@ System.registerDynamic("app/weapon.js", ["./config", "./utils"], true, function(
     constructor(id, text) {
       this.id = id;
       this.text = text;
+      this.disabled = false;
     }
     action() {
       let container = document.querySelector('.page');
@@ -35179,6 +35208,14 @@ System.registerDynamic("app/weapon.js", ["./config", "./utils"], true, function(
 								<div class="mdl-card__supporting-text">' + utils_1.Utils.pickItem(config_1.Config.elementContents) + '</div>\
 							</div>';
       container.appendChild(element);
+      this.recharge();
+    }
+    recharge() {
+      this.disabled = true;
+      let self = this;
+      setTimeout(function() {
+        self.disabled = false;
+      }, config_1.Config.weaponRechargeTime);
     }
   }
   exports.Weapon = Weapon;
@@ -36098,22 +36135,17 @@ System.registerDynamic("app/app.component.js", ["@angular/core", "./portal.compo
       this.weapons = [new weapon_1.Weapon(1, 'Build')];
     }
     ngOnInit() {
-      this.start();
+      for (let i = 0; i < 3; i++) {
+        this.weapons[0].action();
+      }
       event_service_1.EventService.state.subscribe(function(state) {
-        console.log(state);
+        if (state == 'start') {}
       });
       let self = this;
       setTimeout(function() {
-        self.start();
+        event_service_1.EventService.state.next('demo');
       });
     }
-    start() {
-      void event_service_1.EventService.state.next('start');
-      for (let i = 0; i < 10; i++) {
-        this.weapons[0].action();
-      }
-    }
-    end() {}
   };
   AppComponent = __decorate([core_1.Component({
     selector: 'app',
