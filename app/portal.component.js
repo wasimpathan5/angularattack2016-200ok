@@ -25,7 +25,7 @@ let PortalComponent = class PortalComponent {
             this.createInterval = null;
         }
         this.createInterval = setInterval(function () {
-            let targets = document.querySelectorAll('.element');
+            let targets = document.querySelectorAll('.element:not([destroyed])');
             if (targets.length > 0) {
                 let newCreature = self.lab.createCreature(self.creatures.length);
                 self.creatures.push(newCreature);

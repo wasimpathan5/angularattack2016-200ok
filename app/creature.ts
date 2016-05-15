@@ -106,7 +106,9 @@ export class Creature {
 	}
 	killTarget() {
 		if (!this.target) {return;}
-		this.target.parentNode.removeChild(this.target);
+		// this.target.parentNode.removeChild(this.target);
+		this.target.style.visibility = "hidden";
+		this.target.setAttribute("destroyed", "true");
 		this.target = null;		
 	}
 	onTarget() {
@@ -124,7 +126,7 @@ export class Creature {
 		this.go();
 	}
 	findTarget() {		
-		let targets = document.querySelectorAll('.element');
+		let targets = document.querySelectorAll('.element:not([destroyed])');
 		let i = this.getRandomTarget(0, targets.length - 1);
 		this.target = <HTMLElement> targets[i];
 		if (!this.target) {
