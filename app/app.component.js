@@ -16,7 +16,7 @@ const weapon_1 = require('./weapon');
 const event_service_1 = require('./event.service');
 let AppComponent = class AppComponent {
     constructor() {
-        this.weapons = [new weapon_1.Weapon(1, 'Build'), new weapon_1.Weapon(2, 'Freeze')];
+        this.weapons = [new weapon_1.Weapon(1, 'Build')];
     }
     ngOnInit() {
         this.start();

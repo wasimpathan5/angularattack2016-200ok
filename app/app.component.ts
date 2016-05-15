@@ -13,7 +13,7 @@ import {EventService} from './event.service';
 })
 
 export class AppComponent {
-	weapons: Weapon[] = [new Weapon(1,'Build'), new Weapon(2, 'Freeze')];
+	weapons: Weapon[] = [new Weapon(1,'Build')];
 	ngOnInit() {
     	this.start();
 		

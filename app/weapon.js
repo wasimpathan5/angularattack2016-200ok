@@ -1,5 +1,7 @@
 "use strict";
 // Tool for a user to defend against the creeps
+const config_1 = require('./config');
+const utils_1 = require('./utils');
 class Weapon {
     constructor(id, text) {
         this.id = id;
@@ -14,8 +16,8 @@ class Weapon {
         element.setAttribute('class', 'element mdl-card mdl-shadow--2dp');
         // TODO: add random content 
         element.innerHTML = '<div class="mdl-card__title">\
-								<h2 class="mdl-card__title-text">Element</h2></div>\
-								<div class="mdl-card__supporting-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...</div>\
+								<h2 class="mdl-card__title-text">' + utils_1.Utils.pickItem(config_1.Config.elementTitle) + '</h2></div>\
+								<div class="mdl-card__supporting-text">' + utils_1.Utils.pickItem(config_1.Config.elementContents) + '</div>\
 							</div>';
         container.appendChild(element);
     }
