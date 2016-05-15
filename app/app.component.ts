@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {PortalComponent} from './portal.component';
+import {ModalComponent} from './modal.component';
 import {WeaponComponent} from './weapon.component';
 import {Weapon} from './weapon';
 
@@ -7,7 +8,7 @@ import {Weapon} from './weapon';
 	selector: 'app',
 	templateUrl: 'app/app.component.html',
 	styleUrls: ['app/app.component.css'],
-	directives: [PortalComponent, WeaponComponent]
+	directives: [PortalComponent, WeaponComponent, ModalComponent]
 })
 
 export class AppComponent {
