@@ -27,13 +27,16 @@ export class Creature {
 		this.family = 'bug_report'; // Should match material design icon codes
 	};
 	clickHandler() {
-		if (this.health <= 0) {
+		if (this.health <= 10) {
 			this.destroy();
 		}
 		this.health -= 10;
 	};
 	destroy() {
-		// Placeholder to remove the current creature	
+		this.stop();
+		let creatureInnerDivElement = <HTMLElement> document.getElementById("creature-" + this.id);
+		let creatureCustomElement = creatureInnerDivElement.parentNode;
+		creatureCustomElement.parentNode.removeChild(creatureCustomElement);
 	};
 	stop() {
 		if (this.moveInterval) {

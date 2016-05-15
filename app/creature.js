@@ -15,14 +15,17 @@ class Creature {
     }
     ;
     clickHandler() {
-        if (this.health <= 0) {
+        if (this.health <= 10) {
             this.destroy();
         }
         this.health -= 10;
     }
     ;
     destroy() {
-        // Placeholder to remove the current creature	
+        this.stop();
+        let creatureInnerDivElement = document.getElementById("creature-" + this.id);
+        let creatureCustomElement = creatureInnerDivElement.parentNode;
+        creatureCustomElement.parentNode.removeChild(creatureCustomElement);
     }
     ;
     stop() {
