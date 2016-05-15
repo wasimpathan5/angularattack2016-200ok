@@ -1,1 +1,1 @@
-<div class="creature noselect" [ngStyle]="{top: creature.top, left: creature.left}" [attr.active]="creature.active" [attr.health]="creature.health" [attr.level]="creature.level">{{creature.family}}</div>
+<div class="creature noselect" (click)="creature.clickHandler()" [ngStyle]="{top: creature.top, left: creature.left}" [attr.active]="creature.active" [attr.health]="creature.health" [attr.level]="creature.level">{{creature.family}}</div>

@@ -26,6 +26,15 @@ export class Creature {
 		this.speed = Config.creatureBaseSpeed;
 		this.family = 'bug_report'; // Should match material design icon codes
 	};
+	clickHandler() {
+		if (this.health <= 0) {
+			this.destroy();
+		}
+		this.health -= 10;
+	};
+	destroy() {
+		// Placeholder to remove the current creature	
+	};
 	stop() {
 		if (this.moveInterval) {
 			clearInterval(this.moveInterval);
