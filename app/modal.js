@@ -15,7 +15,7 @@ class Modal {
     positionModal() {
         var t = document.querySelector(this.targetElement);
         let dialog = document.querySelector(this.selector).querySelector('dialog');
-        dialog.style.zIndex = '501';
+        dialog.style.zIndex = '600';
         dialog.style.position = 'absolute';
         if (this.targetElement != 'body') {
             dialog.style.top = (t.offsetHeight / 2).toString();

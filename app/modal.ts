@@ -32,7 +32,7 @@ export class Modal {
 	positionModal() {
 		var t = <HTMLElement>document.querySelector(this.targetElement);
 		let dialog = <HTMLElement>document.querySelector(this.selector).querySelector('dialog');
-		dialog.style.zIndex = '501';
+		dialog.style.zIndex = '600';
 		dialog.style.position = 'absolute';
 		if (this.targetElement != 'body') {
 			dialog.style.top = (t.offsetHeight / 2).toString();
