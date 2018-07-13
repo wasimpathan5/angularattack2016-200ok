@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/wasimpathan5/angularattack2016-200ok.svg?branch=master)](https://travis-ci.com/wasimpathan5/angularattack2016-200ok)
+
 ## Evil portal
 
 Evil portal is a simple game created for the 2016 Angular Attack competition, written using the Angular 2.0 framework. It is written in Typescript and deployed using Surge.
